@@ -13,9 +13,12 @@ public:
     };
     Player(std::string Name,Piece piece);
     ~Player();
+    void SetTurn(bool turn);
+    bool GetTurn();
 private:
    std::string m_Name;
        Piece m_piece;
+       bool m_turn;
 };
 
 #endif // PLAYER_H

@@ -2,7 +2,8 @@
 
 Player::Player(std::string Name,Player::Piece piece):
     m_Name(Name),
-    m_piece(piece)
+    m_piece(piece),
+  m_turn(false)
 {
 
 }
@@ -10,4 +11,12 @@ Player::Player(std::string Name,Player::Piece piece):
 Player::~Player()
 {
 
+}
+void Player:: SetTurn(bool turn){
+    m_turn = turn;
+    return;
+}
+
+bool Player::GetTurn(){
+    return m_turn;
 }

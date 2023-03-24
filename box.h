@@ -26,7 +26,10 @@ public:
 
     Box(Pos position);
     ~Box();
-
+    void SetState(State state);
+    State GetState();
+    void Lock();
+    void Unlock();
 private:
     Pos m_position;
     State m_state;
