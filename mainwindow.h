@@ -36,6 +36,8 @@ private slots:
 
     void on_Mid_Right_clicked(bool checked);
 
+    void on_pushButton_pressed();
+
 private:
     Ui::MainWindow *ui;
 };

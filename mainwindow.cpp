@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->lineEdit->setEnabled(false);
 
 }
 
@@ -41,10 +42,21 @@ void MainWindow::on_Top_Left_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
+
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Top_Left->setEnabled(false);
 }
 
 
@@ -67,10 +79,21 @@ void MainWindow::on_Mid_Top_clicked(bool checked)
     ui->lineEdit->setText(qstr);
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+
+    ui->Mid_Top->setEnabled(false);
 }
 
 
@@ -94,10 +117,20 @@ void MainWindow::on_Top_Right_clicked(bool checked)
     ui->lineEdit->setText(qstr);
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+ui->Top_Right->setEnabled(false);
 }
 
 
@@ -121,11 +154,20 @@ void MainWindow::on_Mid_Left_clicked(bool checked)
     ui->lineEdit->setText(qstr);
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
-
+ui->Mid_Left->setEnabled(false);
 }
 
 
@@ -152,10 +194,20 @@ void MainWindow::on_Middle_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Middle->setEnabled(false);
 }
 
 
@@ -183,10 +235,21 @@ void MainWindow::on_Bot_Left_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Bot_Left->setEnabled(false);
 }
 
 
@@ -210,10 +273,20 @@ void MainWindow::on_Mid_Bot_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Mid_Bot->setEnabled(false);
 }
 
 
@@ -240,11 +313,21 @@ void MainWindow::on_Bot_Right_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
 
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Bot_Right->setEnabled(false);
 }
 
 
@@ -269,10 +352,26 @@ void MainWindow::on_Mid_Right_clicked(bool checked)
 
     if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+        ui->Top_Left->setEnabled(false);
+        ui->Mid_Top->setEnabled(false);
+        ui->Top_Right->setEnabled(false);
+        ui->Middle->setEnabled(false);
+        ui->Mid_Right->setEnabled(false);
+        ui->Mid_Left->setEnabled(false);
+        ui->Bot_Left->setEnabled(false);
+        ui->Mid_Bot->setEnabled(false);
+        ui->Bot_Right->setEnabled(false);
     }
     if(newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
+    ui->Mid_Right->setEnabled(false);
 }
 
+
+
+void MainWindow::on_pushButton_pressed()
+{
+
+}
 

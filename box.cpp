@@ -20,3 +20,7 @@ void Box::SetState(State state)
 Box::State Box::GetState(){
     return m_state;
 }
+
+void Box::reset(){
+    m_state= Empty;
+}

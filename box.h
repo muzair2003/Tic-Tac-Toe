@@ -30,6 +30,7 @@ public:
     State GetState();
     void Lock();
     void Unlock();
+    void reset();
 private:
     Pos m_position;
     State m_state;

@@ -15,6 +15,8 @@ public:
     int WhoTurn();
     int end();
 
+    void reset();
+
 private:
         Box m_Box_TL;
         Box m_Box_TM;

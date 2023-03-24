@@ -125,3 +125,6 @@ int Game:: end(){
 
 
 }
+
+void Game::reset(){
+}
