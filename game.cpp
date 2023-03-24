@@ -127,4 +127,14 @@ int Game:: end(){
 }
 
 void Game::reset(){
+    m_Box_TL.SetState(Box::Empty);
+    m_Box_TM.SetState(Box::Empty);
+    m_Box_TR.SetState(Box::Empty);
+    m_Box_ML.SetState(Box::Empty);
+    m_Box_MM.SetState(Box::Empty);
+    m_Box_MR.SetState(Box::Empty);
+    m_Box_BL.SetState(Box::Empty);
+    m_Box_BM.SetState(Box::Empty);
+    m_Box_BR.SetState(Box::Empty);
 }
+

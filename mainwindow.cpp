@@ -372,6 +372,35 @@ void MainWindow::on_Mid_Right_clicked(bool checked)
 
 void MainWindow::on_pushButton_pressed()
 {
+    newgame.reset();
+    ui->Top_Left->setEnabled(true);
+    ui->Mid_Top->setEnabled(true);
+    ui->Top_Right->setEnabled(true);
+    ui->Middle->setEnabled(true);
+    ui->Mid_Right->setEnabled(true);
+    ui->Mid_Left->setEnabled(true);
+    ui->Bot_Left->setEnabled(true);
+    ui->Mid_Bot->setEnabled(true);
+    ui->Bot_Right->setEnabled(true);
 
+    ui->Top_Left->setText("");
+    ui->Mid_Top->setText("");
+    ui->Top_Right->setText("");
+    ui->Middle->setText("");
+    ui->Mid_Right->setText("");
+    ui->Mid_Left->setText("");
+    ui->Bot_Left->setText("");
+    ui->Mid_Bot->setText("");
+    ui->Bot_Right->setText("");
+
+    ui->Top_Left->setChecked(false);
+    ui->Mid_Top->setChecked(false);
+    ui->Top_Right->setChecked(false);
+    ui->Middle->setChecked(false);
+    ui->Mid_Right->setChecked(false);
+    ui->Mid_Left->setChecked(false);
+    ui->Bot_Left->setChecked(false);
+    ui->Mid_Bot->setChecked(false);
+    ui->Bot_Right->setChecked(false);
 }
 
