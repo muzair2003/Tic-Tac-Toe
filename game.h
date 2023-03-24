@@ -13,7 +13,7 @@ public:
     void SetState(Box::State state, Box::Pos position);
     void Switch();
     int WhoTurn();
-    bool end();
+    int end();
 
 private:
         Box m_Box_TL;

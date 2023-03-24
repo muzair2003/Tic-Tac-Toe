@@ -39,10 +39,12 @@ void MainWindow::on_Top_Left_clicked(bool checked)
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
     }
-
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
+    }
 }
 
 
@@ -63,10 +65,12 @@ void MainWindow::on_Mid_Top_clicked(bool checked)
     std::string s = "Player " + std::to_string(newgame.WhoTurn());
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
     }
-
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
+    }
 }
 
 
@@ -88,10 +92,12 @@ void MainWindow::on_Top_Right_clicked(bool checked)
     std::string s = "Player " + std::to_string(newgame.WhoTurn());
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
     }
-
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
+    }
 }
 
 
@@ -113,8 +119,11 @@ void MainWindow::on_Mid_Left_clicked(bool checked)
     std::string s = "Player " + std::to_string(newgame.WhoTurn());
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 
 }
@@ -141,8 +150,11 @@ void MainWindow::on_Middle_clicked(bool checked)
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 }
 
@@ -169,8 +181,11 @@ void MainWindow::on_Bot_Left_clicked(bool checked)
     ui->lineEdit->setText(qstr);
 
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 }
 
@@ -193,8 +208,11 @@ void MainWindow::on_Mid_Bot_clicked(bool checked)
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 }
 
@@ -220,8 +238,12 @@ void MainWindow::on_Bot_Right_clicked(bool checked)
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 }
 
@@ -245,8 +267,11 @@ void MainWindow::on_Mid_Right_clicked(bool checked)
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==true){
+    if(newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
+    }
+    if(newgame.end()==2){
+        QMessageBox::about(this,"Tie","It is a Tie");
     }
 }
 
