@@ -2,19 +2,19 @@
 #include "ui_mainwindow.h"
 #include "QWidget"
 #include "QLineEdit"
-#include "game.h"
 #include <string>
 #include <iostream>
 
 #include <QMessageBox>
-Game newgame;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , m_newgame()
 {
     ui->setupUi(this);
     ui->lineEdit->setEnabled(false);
-
+;
 }
 
 MainWindow::~MainWindow()
@@ -22,25 +22,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-void MainWindow::on_Top_Left_clicked(bool checked)
-{
-    if(newgame.WhoTurn() == 1){
-        newgame.SetState(Box::X,Box::TL);
-        ui->Top_Left->setText("X");
+void MainWindow:: setButton(QPushButton* button, Box::Pos position){
+    if(m_newgame.WhoTurn() == 1){
+        m_newgame.SetState(Box::X,position);
+        button->setText("X");
     }
     else{
-        newgame.SetState(Box::O,Box::TL);
-        ui->Top_Left->setText("O");
+        m_newgame.SetState(Box::O,position);
+        button->setText("O");
 
     }
-    newgame.Switch();
 
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
+    std::string s = "Player " + std::to_string(m_newgame.WhoTurn());
     QString qstr = QString::fromStdString(s);
     ui->lineEdit->setText(qstr);
 
-    if(newgame.end()==1){
+    if(m_newgame.end()==1){
         QMessageBox::about(this,"Winner", qstr + " has won");
         ui->Top_Left->setEnabled(false);
         ui->Mid_Top->setEnabled(false);
@@ -53,326 +50,73 @@ void MainWindow::on_Top_Left_clicked(bool checked)
         ui->Bot_Right->setEnabled(false);
 
     }
-    if(newgame.end()==2){
+    if(m_newgame.end()==2){
         QMessageBox::about(this,"Tie","It is a Tie");
     }
-    ui->Top_Left->setEnabled(false);
+ m_newgame.Switch();
+    button->setEnabled(false);
+}
+void MainWindow::on_Top_Left_clicked(bool checked)
+{
+setButton(ui->Top_Left,Box::TL);
 }
 
 
 void MainWindow::on_Mid_Top_clicked(bool checked)
 {
-
-    if(newgame.WhoTurn() == 1){
-        newgame.SetState(Box::X,Box::TM);
-        ui->Mid_Top->setText("X");
-    }
-    else{
-
-        newgame.SetState(Box::O,Box::TM);
-        ui->Mid_Top->setText("O");
-
-    }
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-
-    ui->Mid_Top->setEnabled(false);
+    setButton(ui->Mid_Top,Box::TM);
 }
 
 
 
 void MainWindow::on_Top_Right_clicked(bool checked)
 {
-
-
-    if(newgame.WhoTurn() == 1){
-        newgame.SetState(Box::X,Box::TR);
-        ui->Top_Right->setText("X");
-    }
-    else{
-        newgame.SetState(Box::O,Box::TR);
-        ui->Top_Right->setText("O");
-
-    }
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-ui->Top_Right->setEnabled(false);
+    setButton(ui->Top_Right,Box::TR);
 }
 
 
 
 void MainWindow::on_Mid_Left_clicked(bool checked)
 {
-
-
-    if(newgame.WhoTurn() == 1){
-        newgame.SetState(Box::X,Box::ML);
-        ui->Mid_Left->setText("X");
-    }
-    else{
-        newgame.SetState(Box::O,Box::ML);
-        ui->Mid_Left->setText("O");
-
-    }
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-ui->Mid_Left->setEnabled(false);
+setButton(ui->Mid_Left,Box::ML);
 }
 
 
 
 void MainWindow::on_Middle_clicked(bool checked)
 {
-
-
-    if(newgame.WhoTurn() == 1){
-
-        newgame.SetState(Box::X,Box::MM);
-        ui->Middle->setText("X");
-    }
-    else{
-
-        newgame.SetState(Box::O,Box::MM);
-        ui->Middle->setText("O");
-
-    }
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-    ui->Middle->setEnabled(false);
+    setButton(ui->Middle,Box::MM);
 }
 
 
 void MainWindow::on_Bot_Left_clicked(bool checked)
 {
-    if(newgame.WhoTurn() == 1){
-
-        newgame.SetState(Box::X,Box::BL);
-        ui->Bot_Left->setText("X");
-    }
-    else{
-
-        newgame.SetState(Box::O,Box::BL);
-        ui->Bot_Left->setText("O");
-    }
-
-
-
-
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-
-
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-    ui->Bot_Left->setEnabled(false);
+    setButton(ui->Bot_Left,Box::BL);
 }
 
 
 void MainWindow::on_Mid_Bot_clicked(bool checked)
 {
-    if(newgame.WhoTurn() == 1){
-        newgame.SetState(Box::X,Box::BM);
-        ui->Mid_Bot->setText("X");
-    }
-    else{
-        newgame.SetState(Box::O,Box::BM);
-        ui->Mid_Bot->setText("O");
-    }
-
-
-
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-    ui->Mid_Bot->setEnabled(false);
+setButton(ui->Mid_Bot,Box::BM);
 }
 
 
 void MainWindow::on_Bot_Right_clicked(bool checked)
 {
-    if(newgame.WhoTurn() == 1){
-
-
-        newgame.SetState(Box::X,Box::BR);
-        ui->Bot_Right->setText("X");
-    }
-    else{
-
-
-        newgame.SetState(Box::O,Box::BR);
-        ui->Bot_Right->setText("O");
-    }
-
-
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-    ui->Bot_Right->setEnabled(false);
+    setButton(ui->Bot_Right,Box::BR);
 }
 
 
 void MainWindow::on_Mid_Right_clicked(bool checked)
 {
-    if(newgame.WhoTurn() == 1){
-
-        newgame.SetState(Box::X,Box::MR);
-        ui->Mid_Right->setText("X");
-    }
-    else{
-
-        newgame.SetState(Box::O,Box::MR);
-        ui->Mid_Right->setText("O");
-    }
-
-
-    newgame.Switch();
-    std::string s = "Player " + std::to_string(newgame.WhoTurn());
-    QString qstr = QString::fromStdString(s);
-    ui->lineEdit->setText(qstr);
-
-    if(newgame.end()==1){
-        QMessageBox::about(this,"Winner", qstr + " has won");
-        ui->Top_Left->setEnabled(false);
-        ui->Mid_Top->setEnabled(false);
-        ui->Top_Right->setEnabled(false);
-        ui->Middle->setEnabled(false);
-        ui->Mid_Right->setEnabled(false);
-        ui->Mid_Left->setEnabled(false);
-        ui->Bot_Left->setEnabled(false);
-        ui->Mid_Bot->setEnabled(false);
-        ui->Bot_Right->setEnabled(false);
-    }
-    if(newgame.end()==2){
-        QMessageBox::about(this,"Tie","It is a Tie");
-    }
-    ui->Mid_Right->setEnabled(false);
+setButton(ui->Mid_Right,Box::MR);
 }
 
 
 
 void MainWindow::on_pushButton_pressed()
 {
-    newgame.reset();
+    m_newgame.reset();
     ui->Top_Left->setEnabled(true);
     ui->Mid_Top->setEnabled(true);
     ui->Top_Right->setEnabled(true);

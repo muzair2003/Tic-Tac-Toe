@@ -2,19 +2,19 @@
 #include <box.h>
 
 Game::Game():
-    m_Box_TL(Box::TL),
-    m_Box_TM(Box::TM),
-     m_Box_TR(Box::TR),
-     m_Box_ML(Box::ML),
-     m_Box_MM(Box::MM),
-     m_Box_MR(Box::MR),
-     m_Box_BL(Box::BL),
-     m_Box_BM(Box::BM),
-     m_Box_BR(Box::BR),
      m_p1("Muhammad",Player::X),
      m_p2("Abdul",Player::O)
 {
-
+    m_newmap = {{Box::TL, new Box(Box::TL)},
+               {Box::TM, new Box(Box::TM)},
+                {Box::TR, new Box(Box::TR)},
+                {Box::ML, new Box(Box::ML)},
+                {Box::MR, new Box(Box::MR)},
+                {Box::MM, new Box(Box::MM)},
+                {Box::BL, new Box(Box::BL)},
+                {Box::BM, new Box(Box::BM)},
+                {Box::BR, new Box(Box::BR)},
+               };
 }
 
 Game::~Game(){
@@ -23,36 +23,7 @@ Game::~Game(){
 
 void Game::SetState(Box::State state,Box::Pos position)
 {
-    switch(position){
-    case Box::TL:
-        m_Box_TL.SetState(state);
-        break;
-    case Box::TM:
-        m_Box_TM.SetState(state);
-        break;
-    case Box::TR:
-        m_Box_TR.SetState(state);
-        break;
-    case Box::ML:
-        m_Box_ML.SetState(state);
-        break;
-    case Box::MM:
-        m_Box_MM.SetState(state);
-        break;
-    case Box::MR:
-        m_Box_MR.SetState(state);
-        break;
-    case Box::BL:
-        m_Box_BL.SetState(state);
-        break;
-    case Box::BM:
-        m_Box_BM.SetState(state);
-        break;
-    case Box::BR:
-        m_Box_BR.SetState(state);
-        break;
-
-}
+        m_newmap[position]->SetState(state);
     return;
 
 }
@@ -78,9 +49,9 @@ int Game::WhoTurn(){
 }
 
 int Game:: end(){
-    Box::State board[3][3]={{m_Box_TL.GetState(),m_Box_TM.GetState(),m_Box_TR.GetState()},
-                            {m_Box_ML.GetState(),m_Box_MM.GetState(),m_Box_MR.GetState()},
-                            {m_Box_BL.GetState(),m_Box_BM.GetState(),m_Box_BR.GetState()}};
+    Box::State board[3][3]={{m_newmap[Box::TL]->GetState(),m_newmap[Box::TM]->GetState(),m_newmap[Box::TR]->GetState()},
+                            {m_newmap[Box::ML]->GetState(),m_newmap[Box::MM]->GetState(),m_newmap[Box::MR]->GetState()},
+                            {m_newmap[Box::BL]->GetState(),m_newmap[Box::BM]->GetState(),m_newmap[Box::BR]->GetState()}};
      // any of the rows is same
      for (int i=0; i<=2; i++)
      {
@@ -127,14 +98,10 @@ int Game:: end(){
 }
 
 void Game::reset(){
-    m_Box_TL.SetState(Box::Empty);
-    m_Box_TM.SetState(Box::Empty);
-    m_Box_TR.SetState(Box::Empty);
-    m_Box_ML.SetState(Box::Empty);
-    m_Box_MM.SetState(Box::Empty);
-    m_Box_MR.SetState(Box::Empty);
-    m_Box_BL.SetState(Box::Empty);
-    m_Box_BM.SetState(Box::Empty);
-    m_Box_BR.SetState(Box::Empty);
+
+    for(auto x: m_newmap){
+        x.second->SetState(Box::Empty);
+    }
+
 }
 

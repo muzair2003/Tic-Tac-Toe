@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include "game.h"
+#include "QWidget"
+#include "qpushbutton.h"
+#include "box.h"
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -39,6 +42,8 @@ private slots:
     void on_pushButton_pressed();
 
 private:
+    void  setButton(QPushButton* button, Box::Pos position);
     Ui::MainWindow *ui;
+    Game m_newgame;
 };
 #endif // MAINWINDOW_H
