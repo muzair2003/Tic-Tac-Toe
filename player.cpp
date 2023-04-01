@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(std::string Name,Player::Piece piece):
+Player::Player(std::string Name,Box::State piece):
     m_Name(Name),
     m_piece(piece),
   m_turn(false)

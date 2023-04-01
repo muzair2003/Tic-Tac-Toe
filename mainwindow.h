@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void  setButton(QPushButton* button, Box::Pos position);
 
 private slots:
 
@@ -42,7 +43,7 @@ private slots:
     void on_pushButton_pressed();
 
 private:
-    void  setButton(QPushButton* button, Box::Pos position);
+
     Ui::MainWindow *ui;
     Game m_newgame;
 };

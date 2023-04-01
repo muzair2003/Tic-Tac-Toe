@@ -2,22 +2,19 @@
 #define PLAYER_H
 
 #include <QObject>
+#include "box.h"
 
 class Player:public QObject
 {
     Q_OBJECT
 public:
-    enum Piece{
-        X,
-        O
-    };
-    Player(std::string Name,Piece piece);
+    Player(std::string Name,Box::State piece);
     ~Player();
     void SetTurn(bool turn);
     bool GetTurn();
 private:
    std::string m_Name;
-       Piece m_piece;
+       Box::State m_piece;
        bool m_turn;
 };
 
