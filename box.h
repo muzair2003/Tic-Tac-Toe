@@ -26,8 +26,8 @@ public:
 
     Box(Pos position);
     ~Box();
-    void SetState(State state);
-    State GetState();
+    void SetState_Box(State state);
+    State GetState_Box();
     void Lock();
     void Unlock();
     void reset();

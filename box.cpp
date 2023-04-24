@@ -12,12 +12,12 @@ Box::~Box(){
 
 }
 
-void Box::SetState(State state)
+void Box::SetState_Box(State state)
 {
     m_state = state;
     return;
 }
-Box::State Box::GetState(){
+Box::State Box::GetState_Box(){
     return m_state;
 }
 

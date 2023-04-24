@@ -2,8 +2,8 @@
 #include <box.h>
 
 Game::Game():
-     m_p1("Muhammad",Player::X),
-     m_p2("Abdul",Player::O)
+     m_p1("Muhammad",Box::X),
+     m_p2("Abdul",Box::O)
 {
     m_newmap = {{Box::TL, new Box(Box::TL)},
                {Box::TM, new Box(Box::TM)},
@@ -23,7 +23,7 @@ Game::~Game(){
 
 void Game::SetState(Box::State state,Box::Pos position)
 {
-        m_newmap[position]->SetState(state);
+        m_newmap[position]->SetState_Box(state);
     return;
 
 }
@@ -49,9 +49,9 @@ int Game::WhoTurn(){
 }
 
 int Game:: end(){
-    Box::State board[3][3]={{m_newmap[Box::TL]->GetState(),m_newmap[Box::TM]->GetState(),m_newmap[Box::TR]->GetState()},
-                            {m_newmap[Box::ML]->GetState(),m_newmap[Box::MM]->GetState(),m_newmap[Box::MR]->GetState()},
-                            {m_newmap[Box::BL]->GetState(),m_newmap[Box::BM]->GetState(),m_newmap[Box::BR]->GetState()}};
+    Box::State board[3][3]={{m_newmap[Box::TL]->GetState_Box(),m_newmap[Box::TM]->GetState_Box(),m_newmap[Box::TR]->GetState_Box()},
+                            {m_newmap[Box::ML]->GetState_Box(),m_newmap[Box::MM]->GetState_Box(),m_newmap[Box::MR]->GetState_Box()},
+                            {m_newmap[Box::BL]->GetState_Box(),m_newmap[Box::BM]->GetState_Box(),m_newmap[Box::BR]->GetState_Box()}};
      // any of the rows is same
      for (int i=0; i<=2; i++)
      {
@@ -100,7 +100,7 @@ int Game:: end(){
 void Game::reset(){
 
     for(auto x: m_newmap){
-        x.second->SetState(Box::Empty);
+        x.second->SetState_Box(Box::Empty);
     }
 
 }
