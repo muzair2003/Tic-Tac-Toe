@@ -7,8 +7,10 @@
 Game::Game(MainWindow *parent):
     QObject(parent),
      m_p1("Muhammad",Box::X),
-   m_p2(Box::O)
+     m_p2(Box::O)
+
 {
+
     m_newmap = {{Box::TL, new Box(Box::TL)},
                {Box::TM, new Box(Box::TM)},
                 {Box::TR, new Box(Box::TR)},
@@ -20,7 +22,6 @@ Game::Game(MainWindow *parent):
                 {Box::BR, new Box(Box::BR)},
                };
     this->mainWindow = parent;
-    m_empty = {Box::TL,Box::TM,Box::TR,Box::ML,Box::MR,Box::MM,Box::BL,Box::BM,Box::BR};
     m_map = {{Box::TL, mainWindow->ui->Top_Left},
                {Box::TM, mainWindow->ui->Mid_Top},
                 {Box::TR, mainWindow->ui->Top_Right},
@@ -31,8 +32,9 @@ Game::Game(MainWindow *parent):
                 {Box::BM,  mainWindow->ui->Mid_Bot},
                 {Box::BR, mainWindow->ui->Bot_Right},
                };
+
     m_p1.SetTurn(true);
-    m_p2.SetTurn(false,m_empty);
+    m_p2.SetTurn(false);
 }
 
 Game::~Game(){
@@ -50,11 +52,14 @@ void Game::SetState(Box::State state,Box::Pos position)
 void Game::Switch(){
     if(m_p1.GetTurn()==false){
         m_p1.SetTurn(true);
-        m_p2.SetTurn(false,m_empty);
+        m_p2.SetTurn(false);
     }
     else{
+        Box::State board[3][3]={{m_newmap[Box::TL]->GetState_Box(),m_newmap[Box::TM]->GetState_Box(),m_newmap[Box::TR]->GetState_Box()},
+                                         {m_newmap[Box::ML]->GetState_Box(),m_newmap[Box::MM]->GetState_Box(),m_newmap[Box::MR]->GetState_Box()},
+                                         {m_newmap[Box::BL]->GetState_Box(),m_newmap[Box::BM]->GetState_Box(),m_newmap[Box::BR]->GetState_Box()}};
         m_p1.SetTurn(false);
-        Box::Pos bot_pos = m_p2.SetTurn(true,m_empty);
+        Box::Pos bot_pos = m_p2.SetTurn(board,m_empty);
         setButton(bot_pos);
     }
 }
@@ -70,8 +75,8 @@ int Game::WhoTurn(){
 
 int Game:: end(){
     Box::State board[3][3]={{m_newmap[Box::TL]->GetState_Box(),m_newmap[Box::TM]->GetState_Box(),m_newmap[Box::TR]->GetState_Box()},
-                            {m_newmap[Box::ML]->GetState_Box(),m_newmap[Box::MM]->GetState_Box(),m_newmap[Box::MR]->GetState_Box()},
-                            {m_newmap[Box::BL]->GetState_Box(),m_newmap[Box::BM]->GetState_Box(),m_newmap[Box::BR]->GetState_Box()}};
+                                     {m_newmap[Box::ML]->GetState_Box(),m_newmap[Box::MM]->GetState_Box(),m_newmap[Box::MR]->GetState_Box()},
+                                     {m_newmap[Box::BL]->GetState_Box(),m_newmap[Box::BM]->GetState_Box(),m_newmap[Box::BR]->GetState_Box()}};
      // any of the rows is same
      for (int i=0; i<=2; i++)
      {
@@ -122,14 +127,16 @@ void Game::reset(){
     for(auto x: m_newmap){
         x.second->SetState_Box(Box::Empty);
     }
-    m_empty = {Box::TL,Box::TM,Box::TR,Box::ML,Box::MR,Box::MM,Box::BL,Box::BM,Box::BR};
     m_p1.SetTurn(true);
-    m_p2.SetTurn(false,m_empty);
+    m_p2.SetTurn(false);
+    counter = 0;
 
 }
 
 void Game:: setButton(Box::Pos position){
-    if(WhoTurn() == 1){
+
+
+    if(WhoTurn() == 1&& counter !=9){
         SetState(Box::X,position);
         if (position == Box::TL)
         mainWindow->ui->Top_Left->setText("X");
@@ -150,7 +157,7 @@ void Game:: setButton(Box::Pos position){
         else if (position == Box::BR)
         mainWindow->ui->Bot_Right->setText("X");
 }
-    else{
+    if(WhoTurn() == 2&& counter !=9){
 
         SetState(Box::O,position);
         if (position == Box::TL)
@@ -190,8 +197,7 @@ void Game:: setButton(Box::Pos position){
         mainWindow->ui->Bot_Left->setEnabled(false);
         mainWindow->ui->Mid_Bot->setEnabled(false);
         mainWindow->ui->Bot_Right->setEnabled(false);
-        m_p2.SetTurn(false,m_empty);
-        m_empty ={};
+        m_p2.SetTurn(false);
 
 
     }
@@ -201,41 +207,41 @@ void Game:: setButton(Box::Pos position){
 
     if (position == Box::TL){
     mainWindow->ui->Top_Left->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::TL), m_empty.end());
+    counter++;
     }
     if (position == Box::TM){
     mainWindow->ui->Mid_Top->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::TM), m_empty.end());
+counter++;
     }
     if (position == Box::TR){
     mainWindow->ui->Top_Right->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::TR), m_empty.end());
+counter++;
 }
     if (position == Box::ML){
     mainWindow->ui->Mid_Left->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::ML), m_empty.end());
+counter++;
 }
     if (position == Box::MM){
     mainWindow->ui->Middle->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(),  Box::MM), m_empty.end());
+counter++;
 }
     if (position == Box::MR){
     mainWindow->ui->Mid_Right->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::MR), m_empty.end());
+counter++;
 }
     if (position == Box::BL){
     mainWindow->ui->Bot_Left->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::BL), m_empty.end());
+counter++;
 }
     if (position == Box::BM){
     mainWindow->ui->Mid_Bot->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::BM), m_empty.end());
+counter++;
 }
     if (position == Box::BR){
     mainWindow->ui->Bot_Right->setEnabled(false);
-    m_empty.erase(std::remove(m_empty.begin(), m_empty.end(), Box::BR), m_empty.end());
+counter++;
 }
-    if(m_empty.size() != 0){
+    if(counter != 9){
     Switch();
     }
 }

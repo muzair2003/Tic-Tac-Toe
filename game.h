@@ -26,11 +26,13 @@ public:
     void setButton(Box::Pos position);
 
 private:
+    int counter=0;
     std::map<Box::Pos,Box*>m_newmap;
     Player m_p1;
     Bot m_p2;
     std::map<Box::Pos,QPushButton*> m_map;
-    std::vector<Box::Pos> m_empty;
+    Box::Pos m_empty[3][3]={{Box::TL,Box::TM,Box::TR},{Box::ML,Box::MM,Box::MR},{Box::BL,Box::BM,Box::BR}};
+
 
 };
 
