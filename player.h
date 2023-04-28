@@ -4,7 +4,7 @@
 #include <QObject>
 #include "box.h"
 
-class Player:public QObject
+class Player: public QObject
 {
     Q_OBJECT
 public:

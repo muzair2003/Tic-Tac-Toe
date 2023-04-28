@@ -1,17 +1,24 @@
+
 #include "bot.h"
+#include <stdlib.h>
 
-Bot::Bot(Player::Piece piece):
-    Player("Bot",piece)
+Bot::Bot(Box::State piece):
+      Player("Bot",piece),
+      m_piece(piece),
+      m_choose(Box::Pos(rand()%9))
 {
-
 }
 
 Bot::~Bot(){
 
 }
 
-void Player:: SetTurn(bool turn){
-    if (turn)
+Box::Pos Bot:: SetTurn(bool turn,std::vector<Box::Pos> empty){
 
-    return;
+    if (turn== true){
+        int a = rand() % empty.size();
+
+    return empty[a];
 }
+}
+

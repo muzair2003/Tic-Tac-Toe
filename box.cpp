@@ -1,12 +1,11 @@
-#include "box.h"
 
+#include "box.h"
 
 Box::Box(Pos position):
 m_position(position),
 m_state(Empty),
 m_Locked(false)
 {
-
 }
 Box::~Box(){
 
@@ -14,6 +13,7 @@ Box::~Box(){
 
 void Box::SetState_Box(State state)
 {
+
     m_state = state;
     return;
 }

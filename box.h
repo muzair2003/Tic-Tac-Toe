@@ -1,8 +1,7 @@
 #ifndef BOX_H
 #define BOX_H
-
+#include "QPushButton"
 #include <QObject>
-
 class Box:public QObject
 {
     Q_OBJECT
@@ -23,8 +22,7 @@ public:
         O,
         Empty
     };
-
-    Box(Pos position);
+Box(Pos position);
     ~Box();
     void SetState_Box(State state);
     State GetState_Box();
